@@ -1,0 +1,12 @@
+{
+  "polygon": {
+    "MeeToken": "0xMeeTokenAddress",
+    "BadgeNFT": "0xBadgeNFTAddress",
+    "QuestManager": "0xQuestManagerAddress"
+  },
+  "fuse": {
+    "MeeToken": "0xFuseMeeToken",
+    "BadgeNFT": "0xFuseBadgeNFT",
+    "QuestManager": "0xFuseQuestManagerAddress"
+  }
+}
