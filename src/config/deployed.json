@@ -1,0 +1,6 @@
+import deployed from "../config/deployed.json";
+
+const network = "polygon"; // หรือโหลดจาก wagmi/useNetwork
+const meeTokenAddress = deployed[network].MeeToken;
+const badgeNFTAddress = deployed[network].BadgeNFT;
+const questManagerAddress = deployed[network].QuestManager;
