@@ -1,0 +1,75 @@
+มาเลยครับ! ผมจะจัดให้ครบทั้งไฟล์ `meechain.json` สำหรับ config blockchain และ helper TypeScript ที่อ่าน config แบบ type-safe เพื่อให้คุณใช้งานได้สะดวกทั้งฝั่ง React และ backend 👇
+
+---
+
+## 📁 `src/config/meechain.json`
+
+```json
+{
+  "network": "mee-mainnet",
+  "chainId": 2025,
+  "rpcUrl": "https://rpc.meechain.io",
+  "explorerUrl": "https://explorer.meechain.io",
+  "contract": {
+    "name": "MeeToken",
+    "address": "0x1234567890abcdef1234567890abcdef12345678",
+    "abiPath": "/src/contracts/MeeToken.abi.json"
+  }
+}
+```
+
+---
+
+## 🧠 TypeScript Helper: `src/config/loadMeechain.ts`
+
+```ts
+import meechainConfig from './meechain.json'
+
+type MeechainConfig = {
+  network: string
+  chainId: number
+  rpcUrl: string
+  explorerUrl: string
+  contract: {
+    name: string
+    address: string
+    abiPath: string
+  }
+}
+
+export const getMeechainConfig = (): MeechainConfig => {
+  return meechainConfig
+}
+```
+
+---
+
+## ✅ วิธีใช้ใน React หรือ Node.js
+
+```ts
+import { getMeechainConfig } from './config/loadMeechain'
+
+const config = getMeechainConfig()
+
+console.log(`🔗 Connecting to ${config.network} via ${config.rpcUrl}`)
+console.log(`📜 Contract ${config.contract.name} at ${config.contract.address}`)
+```
+
+---
+
+## 🔐 ถ้าใช้กับ Smart Contract
+
+คุณสามารถโหลด ABI แบบ dynamic ได้แบบนี้:
+
+```ts
+import fs from 'fs'
+import path from 'path'
+
+const abi = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, config.contract.abiPath), 'utf-8')
+)
+```
+
+> ถ้าใช้ใน frontend ให้ใช้ dynamic `import()` แทน `fs`
+
+---
