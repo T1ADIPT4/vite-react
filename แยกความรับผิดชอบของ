@@ -1,0 +1,53 @@
+ใช่เลยครับ! โครงสร้างไฟล์และตำแหน่งที่คุณวางไว้ใน `src/config/` นั้นเหมาะสมมากสำหรับการแยกความรับผิดชอบของ config ที่เกี่ยวกับ deployment และระบบเชื่อมต่อภายนอก เช่น MeeChain หรือ Vercel 🎯
+
+ตอนนี้คุณมีทั้ง:
+
+- `deployed.json` → ใช้เก็บ metadata ของการ deploy เช่น URL, region, build version
+- `deployMechanism.json` → น่าจะใช้สำหรับระบุกลไกหรือวิธีการ deploy เช่นใช้ GitHub Actions, Vercel CLI, หรือ CI/CD pipeline
+
+ถ้าจะให้ครบเครื่องยิ่งขึ้น คุณอาจแยกความรับผิดชอบของแต่ละไฟล์แบบนี้:
+
+---
+
+## 🧩 ไฟล์แนะนำใน `src/config/`
+
+| ไฟล์ | ใช้ทำอะไร |
+|------|-----------|
+| `deployed.json` | เก็บข้อมูลสถานะล่าสุดของการ deploy เช่น URL, เวลา, region |
+| `deployMechanism.json` | ระบุวิธี deploy เช่นใช้ GitHub Actions, preview mode, auth flags |
+| `meechain.json` | (แนะนำเพิ่ม) เก็บข้อมูล RPC, chainId, contract address |
+| `flags.ts` หรือ `env.ts` | ใช้สำหรับอ่าน environment flags จาก `.env` หรือ config JSON |
+
+---
+
+## 🧠 ตัวอย่าง `deployMechanism.json`
+
+```json
+{
+  "ci": "github-actions",
+  "platform": "vercel",
+  "previewBranch": "preview/auth-subdomain",
+  "authEnabled": true,
+  "subdomain": "preview.yourdomain.com",
+  "middleware": "basic-auth",
+  "autoDeploy": true
+}
+```
+
+---
+
+## ✅ วิธีใช้ในโค้ด React หรือ Express
+
+```ts
+import mechanism from './config/deployMechanism.json'
+
+if (mechanism.authEnabled) {
+  console.log('🔐 Auth is enabled via:', mechanism.middleware)
+}
+
+if (mechanism.autoDeploy) {
+  console.log('🚀 Auto-deploy is active on branch:', mechanism.previewBranch)
+}
+```
+
+---
