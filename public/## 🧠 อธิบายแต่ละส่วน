@@ -1,0 +1,34 @@
+## 🧠 อธิบายแต่ละส่วน
+
+| Key | ความหมาย |
+|-----|-----------|
+| `project` | ชื่อโปรเจกต์ |
+| `vercel.url` | URL ที่ deploy บน Vercel |
+| `vercel.region` | Region ที่ใช้ deploy (เช่น iad1 = Washington DC) |
+| `vercel.buildVersion` | เวอร์ชันของ build machine |
+| `vercel.deployedAt` | เวลาที่ deploy ล่าสุด |
+| `meechain.rpcUrl` | RPC endpoint สำหรับเชื่อมกับ MeeChain |
+| `meechain.chainId` | Chain ID ของ MeeChain |
+| `meechain.network` | ชื่อ network เช่น mainnet, testnet |
+| `meechain.contractAddress` | Address ของ smart contract |
+| `flags.previewMode` | เปิด/ปิดโหมด preview |
+| `flags.authEnabled` | เปิด/ปิดระบบ auth |
+| `flags.subdomain` | ชื่อ subdomain ที่ใช้สำหรับ preview |
+
+---
+
+## 🧩 วิธีใช้ในโค้ด React
+
+```ts
+import deployConfig from './config/deployEd.json'
+
+if (deployConfig.flags.previewMode) {
+  console.log('Running in preview mode on:', deployConfig.flags.subdomain)
+}
+
+const rpc = deployConfig.meechain.rpcUrl
+```
+
+---
+
+อยากให้ช่วย generate `meechain.ts` ที่อ่านจาก JSON นี้ หรือเพิ่มระบบ fallback config ก็จัดให้ได้เลยครับ 😎
