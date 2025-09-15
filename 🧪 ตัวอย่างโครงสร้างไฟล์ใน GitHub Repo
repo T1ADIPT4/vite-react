@@ -1,0 +1,10 @@
+vite-react/
+├── public/
+├── src/
+│   └── config/
+│       └── meechain.ts       ← เก็บ endpoint หรือ config MeeChain
+├── .env.vercel               ← เก็บ secrets สำหรับ Vercel
+├── vercel.json               ← ตั้งค่า deploy
+├── .gitignore
+├── README.md
+└── package.json
