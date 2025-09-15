@@ -1,0 +1,98 @@
+ได้เลย! ถ้าคุณอยากตั้ง CI/CD บน GitHub เพื่อ deploy โปรเจกต์ Vite + React ไปยัง Vercel พร้อมระบบ preview บน subdomain และ auth middleware — เราจะใช้ GitHub Actions เป็นตัวกลางในการจัดการ workflow อัตโนมัติทุกครั้งที่มีการ push หรือ pull request
+
+---
+
+## ⚙️ ขั้นตอนการตั้ง CI/CD ด้วย GitHub Actions + Vercel
+
+### 1. **สร้างไฟล์ Workflow**
+
+ในโปรเจกต์ของคุณ สร้างไฟล์ที่ชื่อว่า:
+
+```
+.github/workflows/deploy.yml
+```
+
+แล้วใส่เนื้อหาประมาณนี้:
+
+```yaml
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+      - preview/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod' # หรือไม่ใส่เพื่อ deploy preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+```
+
+---
+
+### 2. **ตั้ง Secrets บน GitHub**
+
+ไปที่ GitHub repo > Settings > Secrets > Actions แล้วเพิ่ม:
+
+| Secret Name         | คำอธิบาย |
+|---------------------|-----------|
+| `VERCEL_TOKEN`      | Token จาก Vercel (ได้จาก Account Settings > Tokens) |
+| `VERCEL_ORG_ID`     | ID ขององค์กรใน Vercel |
+| `VERCEL_PROJECT_ID` | ID ของโปรเจกต์ใน Vercel |
+
+คุณสามารถหา `ORG_ID` และ `PROJECT_ID` ได้จาก Vercel dashboard หรือใช้ CLI:
+
+```bash
+vercel inspect
+```
+
+---
+
+### 3. **แยก Branch สำหรับ Preview**
+
+- ใช้ branch เช่น `preview/auth-subdomain`
+- ทุกครั้งที่ push ไป branch นี้ GitHub Actions จะ deploy ไปยัง preview URL ของ Vercel
+- คุณสามารถตั้ง subdomain ให้ชี้ไปยัง preview deployment ได้ เช่น `preview.yourdomain.com`
+
+---
+
+### 4. **รวมกับ Auth Middleware**
+
+- ใน branch preview ให้ใส่ middleware ที่คุณสร้างไว้ก่อนหน้า
+- เมื่อ deploy เสร็จ preview URL จะมี auth ป้องกันการเข้าถึง
+
+---
+
+## 🧠 เคล็ดลับเสริม
+
+- ใช้ `vercel-args: '--prod'` เฉพาะตอน merge เข้า `main`
+- ใช้ GitHub Actions matrix ถ้าคุณมีหลาย environment (dev/staging/prod)
+- เพิ่มขั้นตอน `lint` หรือ `test` ก่อน deploy เพื่อความมั่นใจ
+
+---
+
+อยากให้ช่วย generate deploy.yml แบบปรับแต่งเฉพาะโปรเจกต์คุณไหม เช่นใช้ `pnpm`, มี `env`, หรือ deploy หลาย branch พร้อมกัน?
