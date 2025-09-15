@@ -1,0 +1,20 @@
+{
+  "project": "vite-react",
+  "vercel": {
+    "url": "https://vite-react-4ber.vercel.app",
+    "region": "iad1",
+    "buildVersion": "2023.6.1",
+    "deployedAt": "2025-09-15T18:00:00+07:00"
+  },
+  "meechain": {
+    "rpcUrl": "https://rpc.meechain.io",
+    "chainId": 2025,
+    "network": "mee-mainnet",
+    "contractAddress": "0x1234567890abcdef1234567890abcdef12345678"
+  },
+  "flags": {
+    "previewMode": true,
+    "authEnabled": true,
+    "subdomain": "preview.yourdomain.com"
+  }
+}
