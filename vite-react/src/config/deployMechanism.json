@@ -1,0 +1,9 @@
+{
+  "ci": "github-actions",
+  "platform": "vercel",
+  "previewBranch": "preview/auth-subdomain",
+  "authEnabled": true,
+  "subdomain": "preview.yourdomain.com",
+  "middleware": "basic-auth",
+  "autoDeploy": true
+}
