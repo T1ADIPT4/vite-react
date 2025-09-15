@@ -1,0 +1,31 @@
+{
+  "owner": "T1ADIPT4",
+  "directResponsibilities": [
+    {
+      "contentId": "preview-auth",
+      "type": "middleware",
+      "description": "Basic Auth for preview deploy",
+      "status": "active"
+    },
+    {
+      "contentId": "meechain-config",
+      "type": "blockchain",
+      "description": "MeeChain RPC and contract setup",
+      "status": "active"
+    }
+  ],
+  "assignedResponsibilities": [
+    {
+      "contentId": "robots-block",
+      "assignedTo": "team-dev",
+      "description": "Prevent indexing of preview",
+      "status": "pending"
+    },
+    {
+      "contentId": "ci-deploy",
+      "assignedTo": "ci-bot",
+      "description": "Auto deploy via GitHub Actions",
+      "status": "automated"
+    }
+  ]
+}
