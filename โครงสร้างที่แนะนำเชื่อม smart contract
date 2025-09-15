@@ -1,0 +1,7 @@
+src/
+├── config/
+│   ├── meechain.json
+│   └── loadMeechain.ts
+├── blockchain/
+│   └── contract.ts ← รวม logic เชื่อม smart contract
+
