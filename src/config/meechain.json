@@ -1,0 +1,9 @@
+{
+  "network": "mee-mainnet",
+  "chainId": 2025,
+  "rpcUrl": "https://rpc.meechain.io",
+  "contract": {
+    "name": "MeeToken",
+    "address": "0x1234567890abcdef1234567890abcdef12345678"
+  }
+}
