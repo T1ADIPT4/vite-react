@@ -31,4 +31,3 @@ const rpc = deployConfig.meechain.rpcUrl
 
 ---
 
-อยากให้ช่วย generate `meechain.ts` ที่อ่านจาก JSON นี้ หรือเพิ่มระบบ fallback config ก็จัดให้ได้เลยครับ 😎
