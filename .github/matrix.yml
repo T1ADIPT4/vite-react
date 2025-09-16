@@ -1,4 +1,4 @@
-name: Deploy all dApps
+name: Deploy all dapps
 
 on:
   push:
@@ -14,13 +14,10 @@ jobs:
         app:
           - name: mechanic-dapp
             path: apps/mechanic-dapp
-            project_id: VERCEL_PROJECT_ID_MECHANIC
-          - name: hexchain-dapp
-            path: apps/hexchain-dapp
-            project_id: VERCEL_PROJECT_ID_HEXCHAIN
-          - name: token-dashboard
-            path: apps/token-dashboard
-            project_id: VERCEL_PROJECT_ID_TOKENDASH
+            secret: VERCEL_PROJECT_ID_MECHANIC
+          - name: project-koi
+            path: apps/project-koi
+            secret: VERCEL_PROJECT_ID_PROJECT_KOI
 
     steps:
       - name: Checkout code
@@ -38,7 +35,7 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets[matrix.app.project_id] }}
+          vercel-project-id: ${{ secrets[matrix.app.secret] }}
           vercel-args: '--prod'
         env:
           VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
