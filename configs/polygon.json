@@ -1,21 +1,13 @@
-//configs/polygon.json
 export const networks = {
   polygon: { rpc: "...", contract: "...", quests: [...] },
 };
 
 function loadQuests(networkConfig) {
   return networkConfig.quests.map((questId) => fetchQuestDefinition(questId));
-};
-
-<select id="networkSelector">
-  <option value="polygon">Polygon</option>
-</select>
-
+  };
 {
   "mainName": "matic",
   "mainChain": "https://polygon-rpc.com",
   "chainId": 137,
   "name": ["matic", "Matic", "mainNetwork", "mainNet"]
 };
-
-
