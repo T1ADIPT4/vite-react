@@ -1,7 +1,12 @@
 //configs/polygon.json
 export const networks = {
-  polygon: { rpc: "...", contract: "...", quests: [...] },
+  polygon: { rpc: "...", contract: "...", quests: [...] },{
+  "chainId": 137,
+  "rpc": "https://polygon-rpc.com",
+  "contract": "0x123...",
+  "quests": ["connect-wallet", "bridge-assets", "stake-token"]
 };
+
 const urlParams = new URLSearchParams(window.location.search);
 const networkKey = urlParams.get('network') || 'ethereum';
 const networkConfig = networks[networkKey];
