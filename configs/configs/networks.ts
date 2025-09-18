@@ -1,3 +1,4 @@
+import { networks } from './configs/networks'
 
 // configs/networks.ts
 export const networks = {
