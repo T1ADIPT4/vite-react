@@ -1,10 +1,6 @@
 //configs/polygon.json
 export const networks = {
-  polygon: { rpc: "...", contract: "...", quests: [...] },{
-  "chainId": 137,
-  "rpc": "https://polygon-rpc.com",
-  "contract": "0x123...",
-  "quests": ["connect-wallet", "bridge-assets", "stake-token"]
+  polygon: { rpc: "...", contract: "...", quests: [...] },
 };
 
 const urlParams = new URLSearchParams(window.location.search);
