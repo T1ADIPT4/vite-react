@@ -1,3 +1,11 @@
+import { networks } from './configs/networks'
+
+export const networks = {
+  ethereum: { rpc: "...", contract: "...", quests: [...] },
+  polygon: { rpc: "...", contract: "...", quests: [...] },
+  arbitrum: { rpc: "...", contract: "...", quests: [...] },
+};
+
 export const networks = {
   ethereum: {
     chainId: 1,
