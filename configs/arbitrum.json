@@ -1,1 +1,24 @@
+//configs/arbitrum.json
+export const networks = {
+  arbitrum: { rpc: "...", contract: "...", quests: [...] },
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const networkKey = urlParams.get('network') || 'ethereum';
+const networkConfig = networks[networkKey];
+const provider = new ethers.providers.JsonRpcProvider(networkConfig.rpc);
+const contract = new ethers.Contract(networkConfig.contract, abi, provider);
+
+function loadQuests(networkConfig) {
+  return networkConfig.quests.map((questId) => fetchQuestDefinition(questId));
+}
+
+const userId = urlParams.get('user') || '';
+const progressKey = `${userId}:${networkKey}:${$('#stepKey').text()}`;
+const saveProgress = (key, value) => localStorage.setItem(key, value);
+
+$('#networkSelector').on('change', (e) => {
+  const selected = e.target.value;
+  window.location.search = `?network=${selected}&user=${userId}`;
+});
 
