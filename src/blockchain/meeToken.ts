@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
-import abi from "./config/MeeToken.abi.json";
-import { getMeechainConfig } from "./config/loadMeechain";
+import { ethers } from 'ethers'
+import abi from 'config/MeeToken.abi.json'
+import { getMeechainConfig } from 'config/loadMeechain'
 
 export async function getContractWithSigner() {
   const config = getMeechainConfig()
