@@ -1,6 +1,6 @@
 // src/hooks/useContracts.ts
 import { ethers } from "ethers";
-import deployed from "../config/deployed.json";
+import deployed from "../config/deployed";
 import MeeTokenABI from "../abi/MeeToken.json";
 import BadgeNFTABI from "../abi/BadgeNFT.json";
 import QuestManagerABI from "../abi/QuestManager.json";
