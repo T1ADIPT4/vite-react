@@ -3,7 +3,7 @@
   "platform": "vercel",
   "previewBranch": "preview/auth-subdomain",
   "authEnabled": true,
-  "subdomain": "preview.yourdomain.com",
+  "subdomain": "meechain.run.place",
   "middleware": "basic-auth",
   "autoDeploy": true
 }
